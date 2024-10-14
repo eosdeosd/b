@@ -7,6 +7,7 @@ var rule = {
     searchable: 2,
     quickSearch: 0,
     filterable: 1,
+    tab_order:['lzm3u8','liangzi'],
     play_parse: true,
     lazy:`js:
         var html = JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1]);
