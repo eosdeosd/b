@@ -3,10 +3,10 @@
 var rule = {
     title:'干饭影视',
     // host:'https://gfysys.com',
-    host:'https://gfys.top',
+    host:'https://gfvod.com',
     hostJs:'print(HOST);let html=request(HOST,{headers:{"User-Agent":PC_UA}});let src=jsp.pdfh(html,"li:eq(0)&&a:eq(0)&&Text");print(src);HOST=src',
     // url:'/vodshow/fyclass--------fypage---.html',
-    url:'/vodshow/fyclassfyfilter.html',
+    url:'/vodshow/fyfilter.html',
     filterable:1,//是否启用分类筛选,
     filter_url:'-{{fl.area}}-{{fl.by}}-{{fl.class}}-----fypage---{{fl.year}}',
     filter: {
