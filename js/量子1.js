@@ -16,7 +16,7 @@ var rule = {
         if (html.encrypt == '1') {
             url = unescape(url)
         }else if(/lzm3u8/.test(input)){
-    play_Url='json:https://jx.m3u8.biz/gg.php?url=';
+    play_Url='json:https://remove-ads.icu/ad.php?url=';
     input={jx:0,url:input,playUrl:play_Url,parse:1}
 } else if (html.encrypt == '2') {
             url = unescape(base64Decode(url))
