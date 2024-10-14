@@ -8,7 +8,44 @@ var rule = {
     quickSearch: 0,
     filterable: 1,
     play_parse: true,
-    lazy: '',
+    lazy:`js:
+        var html = JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1]);
+        var url = html.url;
+        var from = html.from;
+        if (html.encrypt == '1') {
+            url = unescape(url)
+        }else if(/lzm3u8/.test(input)){
+    play_Url='json:https://jx.m3u8.biz/gg.php?url=';
+    input={jx:0,url:input,playUrl:play_Url,parse:1}
+} else if (html.encrypt == '2') {
+            url = unescape(base64Decode(url))
+        }
+        if (/m3u8|mp4/.test(url)) {
+            input = url
+        } else {
+            var jx =request(HOST + "/static/player/" + from + ".js").match(/ src="(.*?)'/)[1];
+			log(jx)
+            let con=request(jx.replace('index','ec')+ url, {headers: {'Referer': HOST}}).match(/let ConFig.*}/)[0];
+			log(con)
+			eval(con+'\\nrule.ConFig=ConFig')
+			function ec(str, uid) {
+				eval(getCryptoJS());
+				return CryptoJS.enc.Utf8.stringify(CryptoJS.AES.decrypt(str, CryptoJS.enc.Utf8.parse('2890' + uid + 'tB959C'), {
+					iv: CryptoJS.enc.Utf8.parse('2F131BE91247866E'),
+					mode: CryptoJS.mode.CBC,
+					padding: CryptoJS.pad.Pkcs7
+				}));
+			};
+			//log(rule.ConFig.url)
+			//log(rule.ConFig.config.uid)
+			let purl=ec(rule.ConFig.url, rule.ConFig.config.uid);
+			//log(purl)
+			input = {
+			   jx: 0,
+			   url: purl,
+			   parse:0,
+			}
+        }`,
     multi: 1,
     timeout: 5000,
     limit: 6,
