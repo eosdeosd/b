@@ -8,45 +8,49 @@ var rule = {
     quickSearch: 0,
     filterable: 1,
     tab_order:['lzm3u8','liangzi'],
-    play_parse: true,
-    lazy:`js:
-        var html = JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1]);
-        var url = html.url;
-        var from = html.from;
-        if (html.encrypt == '1') {
-            url = unescape(url)
-        }else if(/lzm3u8/.test(input)){
-    play_Url='json:https://remove-ads.icu/ad.php?url=';
-    input={jx:0,url:input,playUrl:play_Url,parse:1}
-} else if (html.encrypt == '2') {
-            url = unescape(base64Decode(url))
+    parse: 'https://jx.lasi.fun/blue/index.php?url=',
+    lazy: $js.toString(() => {
+        let html = JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1])
+	    let url = html.url
+	    let from = html.from
+	    if (html.encrypt == '1') {
+		    url = unescape(url);
+	    } else if (html.encrypt == '2') {
+		    url = unescape(base64Decode(url));
+	    }
+        log('切片地址:' + url);
+        
+        if (url.includes('.m3u8')){
+            input = url;
+        }else if(from=='blue'){
+            let html=request(rule.parse+url,{
+                headers:{
+                    'Referer':'https://cj.lziapi.com/',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+                   
+                },
+                redirect: false,
+                withHeaders: true})
+            log(html)
+            let parseurl=JSON.parse(html).location;
+            log(parseurl)
+            let play=JSON.parse(request(parseurl.split('?url=')[1],{
+                headers:{
+                    'Origin': 'https://jx.lasi.fun',
+                    'Host': 'cdn.yangtuyun.cn',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
+                },
+                redirect: false,
+                withHeaders: true})).location+'#.m3u8';
+            //let playurl=fetch(play,{headers:{'Host': 'download4.caiyun.feixin.10086.cn'}})
+            log(play)
+            input=play
+
+        }else{
+            input
         }
-        if (/m3u8|mp4/.test(url)) {
-            input = url
-        } else {
-            var jx =request(HOST + "/static/player/" + from + ".js").match(/ src="(.*?)'/)[1];
-			log(jx)
-            let con=request(jx.replace('index','ec')+ url, {headers: {'Referer': HOST}}).match(/let ConFig.*}/)[0];
-			log(con)
-			eval(con+'\\nrule.ConFig=ConFig')
-			function ec(str, uid) {
-				eval(getCryptoJS());
-				return CryptoJS.enc.Utf8.stringify(CryptoJS.AES.decrypt(str, CryptoJS.enc.Utf8.parse('2890' + uid + 'tB959C'), {
-					iv: CryptoJS.enc.Utf8.parse('2F131BE91247866E'),
-					mode: CryptoJS.mode.CBC,
-					padding: CryptoJS.pad.Pkcs7
-				}));
-			};
-			//log(rule.ConFig.url)
-			//log(rule.ConFig.config.uid)
-			let purl=ec(rule.ConFig.url, rule.ConFig.config.uid);
-			//log(purl)
-			input = {
-			   jx: 0,
-			   url: purl,
-			   parse:0,
-			}
-        }`,
+    }),
+    //lazy:"js:var html=JSON.parse(request(input).match(/r player_.*?=(.*?)</)[1]);log(html);var url=html.url;if(html.encrypt=='1'){url=unescape(url)}else if(html.encrypt=='2'){url=unescape(base64Decode(url))}if(/m3u8|mp4/.test(url)){input=url}else{input}",
     multi: 1,
     timeout: 5000,
     limit: 6,
