@@ -8,6 +8,9 @@ var rule = {
     quickSearch: 0,
     filterable: 1,
     tab_remove:['liangzi'],
+    headers: {
+        'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36',
+      },      
     proxy_rule: $js.toString(() => {      
         let data=fetch(input.url,{headers:rule.headers})       
         let m3u8=data.replace('URI="','URI="https://pl.qcheng.cc/jxpc.php?url=')
