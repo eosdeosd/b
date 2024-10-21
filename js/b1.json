@@ -8,27 +8,29 @@
             "api": "https://github.com/eosdeosd/b/raw/master/js/drpy2.min.js",
             "ext": "https://github.com/eosdeosd/b/raw/master/js/豆瓣.js"
          },
-        {
-            "key": "heimuer",
-            "name": "黑木耳",
-            "type": 3,
-            "api": "https://github.com/eosdeosd/b/raw/master/js/drpy2.min.js",
-            "ext": "https://github.com/eosdeosd/b/raw/master/js/heimuer.js"
-         },       
+
         {
             "key": "量子",
             "name": "量子",
             "type": 3,
             "api": "https://github.com/eosdeosd/b/raw/master/js/drpy2.min.js",
             "ext": "https://github.com/eosdeosd/b/raw/master/js/liangzi.js"
-        },
+         },
         {
             "key": "非凡",
             "name": "非凡",
             "type": 3,
             "api": "https://github.com/eosdeosd/b/raw/master/js/drpy2.min.js",
             "ext": "https://github.com/eosdeosd/b/raw/master/js/feifan.js"
-        },       
+         },
+        {
+            "key": "黑木耳",
+            "name": "黑木耳",
+            "type": 3,
+            "api": "https://github.com/eosdeosd/b/raw/master/js/drpy2.min.js",
+            "ext": "https://github.com/eosdeosd/b/raw/master/js/heimuer.js"
+         },
+       
         {
             "key": "索尼",
             "name": "索尼",
@@ -49,6 +51,7 @@
                 "科幻片"
             ]
         },
+       
         {
             "key": "push_agent",
             "name": "手机｜推送",
@@ -65,7 +68,21 @@
             }
         }
     ],
-    "rules": [       
+    "parses": [
+       
+        {
+            "name": "xmflv",
+            "type": 0,
+            "url": "https://jx.xmflv.com/?url=",
+            "ext": {
+                "header": {
+                    "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+                }
+            }
+        }
+    ],
+    "rules": [
+       
         {
             "name": "量子",
             "hosts": [
@@ -205,6 +222,8 @@
             ]
         }
     ],
+   
+   
     "ijk": [
         {
             "group": "软解码",
