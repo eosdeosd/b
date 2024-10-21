@@ -14,8 +14,7 @@ var rule = {
         input = {
             url: url,
             parse: 0,
-            header: rule.headers
-                }
+            header: rule.headers                
         }
 	`,
     multi: 1,
