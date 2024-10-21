@@ -14,7 +14,7 @@ var rule = {
         input = {
             url: url,
             parse: 0,
-            header: rule.headers                
+            user-agent: rule.headers                
         }
 	`,
     multi: 1,
