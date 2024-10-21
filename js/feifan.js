@@ -10,7 +10,7 @@ var rule = {
     tab_remove:['feifan'],
     play_parse: false,
     lazy: `js:
-	 let url = JSON.parse(fetch('https://remove-ads.icu/ad.php?url='+input)).url
+	 let url = JSON.parse(fetch('https://pl.qcheng.cc/jxpc.php?url='+input)).url
         input = {
             url: url,
             parse: 0,

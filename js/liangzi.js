@@ -10,7 +10,7 @@ var rule = {
     tab_remove:['liangzi'],
     play_parse: true,   
     lazy: `js:
-	 let url = JSON.parse(fetch('https://101.126.17.154/?url='+input)).url
+	 let url = JSON.parse(fetch('https://remove-ads.icu/ad.php?url='+input)).url
         input = {
             url: url,
             parse: 0,
