@@ -10,7 +10,7 @@ var rule = {
     tab_remove:['liangzi'],
     play_parse: true,   
     lazy: `js:
-	 let url = JSON.parse(fetch('https://pl.qcheng.cc/jxpc.php?url='+input)).data.url
+	 let url = JSON.parse(fetch('https://pl.qcheng.cc/jxpc.php?url='+input)).url
         input = {
             url: url,
             parse: 0,
