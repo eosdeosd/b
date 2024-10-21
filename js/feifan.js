@@ -10,7 +10,7 @@ var rule = {
     tab_remove:['feifan'],
     play_parse: false,
     lazy: `js:
-	 let url = JSON.parse(fetch('https://101.126.17.154/?url='+input)).url
+	 let url = JSON.parse(fetch('http://43.248.129.14:20240/?url='+input)).data.url
         input = {
             url: url,
             parse: 0,

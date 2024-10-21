@@ -9,7 +9,7 @@ var rule = {
     filterable: 1,
     play_parse: true,   
     lazy: `js:
-	 let url = JSON.parse(fetch('http://43.248.129.14:20240/?url='+input)).data.url
+	 let url = JSON.parse(fetch('https://remove-ads.icu/ad.php?url='+input)).url
         input = {
             url: url,
             parse: 0,
