@@ -8,7 +8,7 @@ var rule = {
     quickSearch: 0,
     filterable: 1,
     tab_remove:['feifan'],
-    play_parse: false,
+    play_parse: true,
     lazy: `js:
 	 let url = JSON.parse(fetch('http://43.248.129.14:20240/?url='+input)).data.url
         input = {
