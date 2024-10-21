@@ -9,7 +9,7 @@ var rule = {
     filterable: 1,
     //tab_remove:['liangzi'],
     play_parse: true,   
-    //lazy: `js:
+    lazy: `js:
 	 let url = JSON.parse(fetch('https://101.126.17.154/?url='+input)).url
         input = {
             url: url,
