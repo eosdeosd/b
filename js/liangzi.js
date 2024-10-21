@@ -14,8 +14,7 @@ var rule = {
         input = {
             url: url,
             parse: 0,
-            header: {
-                    "User-Agent": "okhttp/4.9.1"
+            header: 0,
                 }
         }
 	`,
