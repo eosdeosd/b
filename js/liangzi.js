@@ -10,11 +10,11 @@ var rule = {
     tab_remove:['liangzi'],
     play_parse: true,   
     lazy: `js:
-	 let url = JSON.parse(fetch('https://remove-ads.icu/ad.php?url='+input)).data.url
+	 let url = JSON.parse(fetch('https://pl.qcheng.cc/jxpc.php?url='+input)).data.url
         input = {
             url: url,
             parse: 0,
-            user-agent: rule.headers                
+            header: rule.headers                
         }
 	`,
     multi: 1,
