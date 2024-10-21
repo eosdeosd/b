@@ -8,24 +8,15 @@ var rule = {
     quickSearch: 0,
     filterable: 1,
     tab_remove:['liangzi'],
-    headers: {
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36',
-      },      
-    proxy_rule: $js.toString(() => {      
-        let data=fetch(input.url,{headers:rule.headers})       
-        let m3u8=data.replace('URI="','URI="https://pl.qcheng.cc/jxpc.php?url=')
-        // let m3u8=data.replace('URI="',`URI="${rule.host}`)        
-        input = [200, 'application/vnd.apple.mpegurl', m3u8]
-    }),
     play_parse: true,   
-    lazy:$js.toString(() => {     
-        let url=getProxyUrl()+'&url='+input    
+    lazy: `js:
+	 let url = JSON.parse(fetch('https://101.126.17.154/?url='+input).data.url
         input = {
             url: url,
             parse: 0,
             header: rule.headers
         }
-    }),
+	`,
     multi: 1,
     timeout: 5000,
     limit: 6,
