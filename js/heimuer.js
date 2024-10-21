@@ -1,16 +1,15 @@
 var rule = {
-    title: '量子',
-    host: 'https://cj.lzcaiji.com',
+    title: '黑木耳',
+    host: 'https://xml.heimuer.xyz',
     homeUrl: '/api.php/provide/vod?ac=detail',
     searchUrl: '/api.php/provide/vod?ac=detail&wd=**&pg=fypage',
     detailUrl: '/api.php/provide/vod?ac=detail&ids=fyid', //非必填,二级详情拼接链接
     searchable: 2,
     quickSearch: 0,
     filterable: 1,
-    tab_remove:['liangzi'],
     play_parse: true,   
     lazy: `js:
-	 let url = JSON.parse(fetch('https://101.126.17.154/?url='+input)).url
+	 let url = JSON.parse(fetch('http://43.248.129.14:20240/?url='+input)).data.url
         input = {
             url: url,
             parse: 0,
@@ -21,8 +20,8 @@ var rule = {
     timeout: 5000,
     limit: 6,
     url: '/api.php/provide/vod?ac=detail&t=fyclass&pg=fypage&f=',
-    class_name: '国产剧&香港剧&台湾剧&韩国剧&日本剧&动作片&喜剧片&科幻片',
-    class_url: '13&14&21&15&22&6&7&9',
+    class_name: '国产剧&港剧&台剧&韩剧&日剧&喜剧片&动作片&科幻片',
+    class_url: '13&14&29&15&16&10&7&25',
     推荐: 'json:list;vod_name;vod_pic;vod_remarks;vod_id', // double: true, // 推荐内容是否双层定位
     // 一级: 'json:list;vod_name;vod_pic;vod_remarks;vod_id',
     一级: `js:
@@ -38,7 +37,7 @@ var rule = {
         }
         let d = [];
         // 忽略分类
-        let cate_exclude = '34,35,45';
+        let cate_exclude = '9,33,64';
         let type_id = getParam(input,'t');
         if(!cate_exclude.match(type_id)){
             let html = request(input);
@@ -77,7 +76,7 @@ var rule = {
     搜索: `js:
         let d = [];
         // 忽略分类
-        let cate_exclude = '34,35,45';
+        let cate_exclude = '9,33,64';
         let html = request(input);
         let list = JSON.parse(html).list;
         list.forEach(function (it){
